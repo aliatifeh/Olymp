@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Bot</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" href="./assets/icons/icon48.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Professional trading signal bot for Olymp Trade broker - Web version">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-robot"></i> A2 BOT</h1>
+            <small>Timeframe: 1 minute</small>
+        </header>
+        
+        <div class="card license-section" id="licenseSection">
+            <h3><i class="fas fa-key"></i> License Activation</h3>
+            <div class="form-group">
+                <input type="text" id="licenseInput" class="form-control" placeholder="Enter license key">
+            </div>
+            <button id="activateLicense" class="btn btn-primary">
+                <i class="fas fa-check"></i> Activate License
+            </button>
+            <div class="license-status">
+                Status: <span id="licenseStatus" class="status-inactive">Inactive</span>
+            </div>
+        </div>
+        
+        <div class="card main-content" style="display: none;">
+            <div class="form-group">
+                <label for="pairSelect">Select Trading Pair:</label>
+                <select id="pairSelect" class="form-control">
+                    <option value="">Please select</option>
+                </select>
+            </div>
+            
+            <div class="button-group">
+                <button id="btnStart" class="btn btn-start">
+                    <i class="fas fa-play"></i> Start
+                </button>
+                <button id="btnStop" class="btn btn-stop" disabled>
+                    <i class="fas fa-stop"></i> Stop
+                </button>
+                <button id="btnSettings" class="btn btn-settings">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+            </div>
+        </div>
+
+        <div class="card main-content" style="display: none;">
+            <div class="status-row">
+                <span>Next signal in:</span>
+                <strong id="countdown">--:--</strong>
+            </div>
+            
+            <div class="signal-container">
+                <div id="currentPair" class="pair-display">—</div>
+                <div id="signal" class="signal neutral">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div id="confidence" class="confidence">Confidence: —</div>
+            </div>
+            
+            <div id="bars" class="bars"></div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span>Today's signals:</span>
+                    <strong id="todaySignals">0</strong>
+                </div>
+                <div class="stat-item">
+                    <span>Status:</span>
+                    <strong id="status">Stopped</strong>
+                </div>
+            </div>
+            
+            <div class="mode-display">
+                <i class="fas fa-info-circle"></i>
+                Mode: <span id="mode">--</span>
+            </div>
+        </div>
+
+        <div class="settings-panel" id="settingsPanel">
+            <h3><i class="fas fa-sliders-h"></i> Advanced Settings</h3>
+            
+            <div class="setting-item">
+                <label>Minimum Signal Confidence:</label>
+                <input type="range" id="minConfidence" min="50" max="95" value="75">
+                <span id="minConfidenceValue">75%</span>
+            </div>
+            
+            <div class="setting-item">
+                <label>Strategy Sensitivity:</label>
+                <input type="range" id="strategySensitivity" min="1" max="10" value="6">
+                <span id="sensitivityValue">6</span>
+            </div>
+            
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="soundEnabled" checked>
+                    Sound Notifications
+                </label>
+            </div>
+            
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="notificationsEnabled" checked>
+                    Browser Notifications
+                </label>
+            </div>
+
+            <button id="saveSettings" class="btn btn-primary">
+                <i class="fas fa-save"></i> Save Settings
+            </button>
+            <button id="closeSettings" class="btn btn-secondary">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+
+        <div class="copyright">
+            Licensed by Ali Atifeh
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script src="./license-manager.js"></script>
+    <script src="./olymptrade-api.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

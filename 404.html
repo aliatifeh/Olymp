@@ -1,0 +1,27 @@
+[file name]: 404.html
+[file content begin]
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // اضافه کردن بررسی برای PWA
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            // اگر در حالت standalone (PWA) هستیم، به روت اصلی برو
+            location.replace('/');
+        } else {
+            var repoName = window.location.pathname.split('/')[1];
+            if (repoName) {
+                location.replace('/' + repoName + '/');
+            } else {
+                location.replace('./');
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>در حال انتقال به صفحه اصلی...</p>
+</body>
+</html>
+[file content end]
